@@ -1,0 +1,69 @@
+﻿@model IEnumerable<CadastroDeFornecedores.Models.FornecedorModel>
+@{
+    ViewData["Title"] = "Lista de Fornecedores";
+}
+
+<h1>Fornecedores</h1>
+
+
+
+<p>
+    <a class="btn btn-success" asp-action="Create">Adicionar Fornecedor</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                Razão Social
+            </th>
+
+
+            <th>
+                Nome Fantasia
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+            </th>
+            <th>
+@*                 @Html.DisplayNameFor(model => model.NomePessoaContato) *@
+                Nome
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr onclick="location.href='@Url.ActionLink("Details", "Fornecedor", new { Id = item.Id })'">
+
+                <td>
+                    @item.RazaoSocial
+                </td>
+                <td>
+                    @item.NomeFantasia
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    @item.Telefone
+                </td>
+                <td>
+                    @item.NomePessoaContato
+                </td>
+
+                <td>
+                    <a class="btn btn-outline-primary btn-sm" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-outline-info btn-sm" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Apagar</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
